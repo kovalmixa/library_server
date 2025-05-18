@@ -15,3 +15,22 @@ spring:
   sql:
     init:
       platform: postgres
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: 53633076130-3u5i0orv2aui4cl34ebc7hao2p400aq3.apps.googleusercontent.com
+#            client-secret: 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
+#            scope:
+#              - openid
+#        provider:
+#          google:
+#            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+#            token-uri: https://oauth2.googleapis.com/token
+#            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+#            user-name-attribute: sub
+
+logging:
+  level:
+    org.springframework.security: TRACE
