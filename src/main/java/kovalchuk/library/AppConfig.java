@@ -28,19 +28,19 @@ public class AppConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests(auth -> auth
-//                        .anyRequest().permitAll()
-//                )
-//                .csrf(csrf -> csrf.disable());
         http
-                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/register", "/auth/login").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults());
+                .csrf(csrf -> csrf.disable());
+//        http
+//                .csrf(csrf -> csrf.disable())
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/auth/register", "/auth/login").permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .formLogin(Customizer.withDefaults())
+//                .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }
