@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+</head>
+<body>
+<h2>Вход в систему</h2>
+<form method="post" action="/login">
+    <label for="username">Имя пользователя:</label>
+    <input type="text" id="username" name="username" required /><br><br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required /><br><br>
+    <button type="submit">Войти</button>
+</form>
+
+<!--<div th:if="${param.error}">-->
+<!--    <p style="color:red;">Неверное имя пользователя или пароль</p>-->
+<!--</div>-->
+</body>
+</html>

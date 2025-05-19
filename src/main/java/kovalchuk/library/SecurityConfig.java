@@ -40,10 +40,17 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login", "/auth/register", "/error").permitAll()
                         .anyRequest().authenticated()
                 )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/profile", true)
+                        .permitAll()
+                )
+                .logout(logout -> logout.permitAll())
                 .authenticationProvider(authenticationProvider(passwordEncoder))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(ex ->

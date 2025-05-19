@@ -53,11 +53,6 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<?> login(){
-        return ResponseEntity.ok("Success");
-    }
-
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AuthRequest request) {
         if (userRepo.existsByUsername(request.getUsername())) {
@@ -68,14 +63,5 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepo.save(user);
         return ResponseEntity.ok().build();
-    }
-    @GetMapping("/profile")
-    public String profile(Model model, @AuthenticationPrincipal OAuth2User user) {
-        model.addAttribute("user", user.getAttribute("name"));
-        return "profile";
-    }
-    @GetMapping("/role")
-    public String getRole(Authentication authentication) {
-        return authentication.getAuthorities().toString();
     }
 }
