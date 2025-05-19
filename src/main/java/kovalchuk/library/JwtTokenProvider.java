@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
-    private final String secret = "secret123";
+    private final String secret = "my-super-secure-secret-key-1234567890";
     private final long expiration = 360000;
 
     public String generateToken(Authentication auth) {
