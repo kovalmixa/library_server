@@ -28,15 +28,19 @@ public class AuthController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
-        );
-        System.out.println(authRequest.getUsername());
-        String token = jwtTokenProvider.generateToken(authentication);
-
-        return ResponseEntity.ok(Collections.singletonMap("token", token));
+//    @PostMapping("/login")
+//    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
+//        );
+//        System.out.println(authRequest.getUsername());
+//        String token = jwtTokenProvider.generateToken(authentication);
+//
+//        return ResponseEntity.ok(Collections.singletonMap("token", token));
+//    }
+    @GetMapping("/login")
+    public ResponseEntity<?> login(){
+        return ResponseEntity.ok("Success");
     }
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AuthRequest request) {
