@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Профіль</title>
 </head>
 <body>
-<h2>Привіт, <span th:text="${name}"></span></h2>
+<h2>Привіт, <span th:text="${username}"></span></h2>
 <br>
-<a href="/logout">вийти</a>
+<form id="logoutForm" th:action="@{/logout}" method="post" style="display:none;">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+</form>
+<a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Вийти</a>
 </body>
 </html>
