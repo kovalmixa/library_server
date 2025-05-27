@@ -37,7 +37,8 @@ public class SecurityConfig {
     @Order(1)
     public SecurityFilterChain htmlSecurity(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/login", "/profile", "/register", "/logout", "/css/**")
+                .securityMatcher("/login", "/profile", "/register", "/logout", "/css/**",
+                        "/books/**", "/authors/**", "/borrowings/**")
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
