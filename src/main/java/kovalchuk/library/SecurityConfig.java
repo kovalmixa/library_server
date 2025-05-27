@@ -35,10 +35,31 @@ public class SecurityConfig {
     }
     @Bean
     @Order(1)
+    public SecurityFilterChain htmlSecurity(HttpSecurity http) throws Exception {
+        http
+                .securityMatcher("/login", "/profile", "/register", "/logout", "/css/**")
+                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .loginPage("/register")
+                        .defaultSuccessUrl("/profile", true)
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .permitAll()
+                );
+
+        return http.build();
+    }
+
+    @Bean
+    @Order(2)
     public SecurityFilterChain apiSecurity(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/auth/**", "/api/**")
                 .csrf(AbstractHttpConfigurer::disable)
+                .securityMatcher("/auth/**", "/api/**")
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login", "/auth/register").permitAll()
@@ -51,27 +72,7 @@ public class SecurityConfig {
                     res.setContentType("application/json");
                     res.getWriter().write("{\"error\": \"Unauthorized\"}");
                 }));
-        return http.build();
-    }
 
-    @Bean
-    @Order(2)
-    public SecurityFilterChain htmlSecurity(HttpSecurity http) throws Exception {
-        http
-                .securityMatcher("/login", "/register", "/profile", "/css/**")
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/profile", true)
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
-                        .permitAll()
-                );
         return http.build();
     }
     @Bean
