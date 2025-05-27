@@ -58,9 +58,8 @@ public class SecurityConfig {
     @Order(2)
     public SecurityFilterChain htmlSecurity(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/login", "/profile", "/register", "/logout", "/css/**", "/")
+                .securityMatcher("/login", "/register", "/profile", "/css/**")
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/css/**", "/").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -75,7 +74,6 @@ public class SecurityConfig {
                 );
         return http.build();
     }
-
     @Bean
     public DaoAuthenticationProvider authenticationProvider(PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
