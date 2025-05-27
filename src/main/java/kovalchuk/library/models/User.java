@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
 
 @Entity
 @Getter
@@ -22,16 +22,13 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Setter
     @Column(nullable = false)
     private String password;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities(){
-        return List.of();
-    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -53,4 +50,15 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    @Override
+    public String getUsername() { return this.username; }
+
+    @Override
+    public String getPassword() { return this.password; }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() { return Collections.emptyList(); }
+
+    @Override
+    public boolean isEnabled() { return true; }
 }
