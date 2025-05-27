@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/borrowings")
+@RequestMapping("/api/borrowings")
 public class BorrowingController {
     private BorrowingService borrowingService;
 
