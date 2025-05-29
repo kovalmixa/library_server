@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file> logs/app-log.json</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/app-log.%d{yyyy-MM-dd}.json</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+    <logger name="kovalchuk.library.controllers.AuthController" level="INFO" additivity="false">
+        <appender-ref ref="JSON_FILE"/>
+    </logger>
+    <root level="INFO">
+        <appender-ref ref="JSON_FILE"/>
+    </root>
+</configuration>

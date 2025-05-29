@@ -8,9 +8,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:postgresql://dpg-d0qnjijuibrs73ep03qg-a:5432/my_postgres_i2dp
-    username: my_postgres_i2dp_user
-    password: Ec4bEN5zQoVAqkwJSbLtw065ovYQNkSW
+    #localhost
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost:5432/postgres
+    #render
+#    url: jdbc:postgresql://dpg-d0qnjijuibrs73ep03qg-a:5432/my_postgres_i2dp
+#    username: my_postgres_i2dp_user
+#    password: Ec4bEN5zQoVAqkwJSbLtw065ovYQNkSW
     driver-class-name: org.postgresql.Driver
   sql:
     init:
